@@ -1,0 +1,18 @@
+network: "sentient-main"
+node_id: "n0de1d-local-3f92c1"
+peers:
+  - id: "peer1-a7f23c"
+    address: "localhost:8801"
+    pubkey: "8f2a1b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t"
+    last_seen: 1721210810
+    status: "active"
+  - id: "peer2-b8g34d" 
+    address: "localhost:8802"
+    pubkey: "1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u"
+    last_seen: 1721210791
+    status: "active"
+  - id: "peer3-c9h45e"
+    address: "localhost:8803"
+    pubkey: "2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v"
+    last_seen: 1721210650
+    status: "inactive"

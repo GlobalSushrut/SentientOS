@@ -1,0 +1,4 @@
+name: test_app
+version: 1.0.0
+runtime: wasm
+entry: main.wasm

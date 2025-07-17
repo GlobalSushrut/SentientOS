@@ -1,0 +1,1 @@
+/home/umesh/Sentinent_os/tso_burn_output/sentient.sh

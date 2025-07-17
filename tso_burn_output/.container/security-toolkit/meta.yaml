@@ -1,0 +1,24 @@
+name: security-toolkit
+version: 1.0.0
+runtime: wasm
+entry: sentinel.wasm
+zk_contract: zk_security_sentinel
+permissions:
+  - network.analysis
+  - network.packet.inspect
+  - filesystem.read.unrestricted
+  - system.memory.scan
+  - binary.disassemble
+  - crypto.operations
+environment:
+  SECURITY_MODE: "advanced"
+  ZK_VERIFICATION: "real-time"
+  MATRIXBOX_ISOLATION: "fortress"
+  BINARY_ANALYSIS: "deep"
+memory_limits:
+  max_heap_mb: 4096
+  max_stack_kb: 8192
+security_controls:
+  ethical_constraints: true
+  audit_logging: true
+  tamper_evidence: true

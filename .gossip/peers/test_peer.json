@@ -1,0 +1,8 @@
+{
+  "id": "peer1",
+  "name": "Test Peer 1",
+  "endpoint": "127.0.0.1:8080",
+  "status": "Online",
+  "last_seen": 1752731148,
+  "sync_enabled": true
+}

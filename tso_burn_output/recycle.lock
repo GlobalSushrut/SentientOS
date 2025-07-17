@@ -1,0 +1,5 @@
+# SentientOS Boot Lock File
+# Generated on 2025-07-17T06:09:13Z
+TSO_MODE=true
+BOOT_SEQUENCE=true
+INIT_HASH=f063daf8ed344680af046462f312ee53

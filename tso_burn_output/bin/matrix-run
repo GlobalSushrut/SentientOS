@@ -1,0 +1,4 @@
+#!/bin/bash
+# SentientOS TSO Tool: matrix-run
+echo "SentientOS matrix-run - TSO Burn v0.1.0"
+echo "Running command: $@"

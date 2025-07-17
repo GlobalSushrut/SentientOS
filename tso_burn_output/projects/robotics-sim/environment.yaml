@@ -1,0 +1,47 @@
+simulation:
+  name: "factory_floor"
+  dimensions:
+    x: 100.0
+    y: 100.0
+    z: 10.0
+  resolution: 0.1
+  update_rate_hz: 20
+
+obstacles:
+  - type: "box"
+    position: [20.0, 30.0, 0.0]
+    dimensions: [5.0, 8.0, 3.0]
+    id: "machine_1"
+  - type: "box"
+    position: [50.0, 50.0, 0.0]
+    dimensions: [10.0, 10.0, 2.0]
+    id: "workbench_1"
+  - type: "cylinder"
+    position: [70.0, 20.0, 0.0]
+    radius: 3.0
+    height: 4.0
+    id: "storage_drum"
+
+robots:
+  - name: "picker_bot"
+    type: "articulated_arm"
+    base_position: [10.0, 10.0, 0.0]
+    joints: 6
+    reach: 1.5
+    payload_kg: 5.0
+  - name: "mobile_cart"
+    type: "wheeled_platform"
+    position: [80.0, 80.0, 0.0]
+    dimensions: [2.0, 1.5, 1.0]
+    max_speed: 2.0
+
+tasks:
+  - name: "pick_and_place"
+    robot: "picker_bot"
+    source: [25.0, 28.0, 1.0]
+    destination: [50.0, 50.0, 2.0]
+    payload_id: "part_A"
+  - name: "transport"
+    robot: "mobile_cart"
+    path: [[80.0, 80.0], [50.0, 50.0], [20.0, 30.0]]
+    payload_id: "assembled_unit"

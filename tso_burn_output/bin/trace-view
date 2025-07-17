@@ -1,0 +1,4 @@
+#!/bin/bash
+# SentientOS TSO Tool: trace-view
+echo "SentientOS trace-view - TSO Burn v0.1.0"
+echo "Running command: $@"

@@ -1,0 +1,17 @@
+name: "test_contract"
+version: "1.0"
+author: "SentientOS Test Suite"
+permissions:
+  - filesystem.read
+  - network.none
+  - container.spawn: false
+verification:
+  input:
+    - name: "value"
+      type: "u64"
+  output:
+    - name: "result"
+      type: "u64"
+  constraints:
+    - "result >= value"
+    - "result <= value * 2"

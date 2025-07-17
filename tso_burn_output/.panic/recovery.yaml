@@ -1,0 +1,25 @@
+recovery_strategies:
+  container_crash:
+    action: "restart"
+    max_attempts: 3
+    cooldown_seconds: 5
+    notify: true
+  
+  zk_verification_failure:
+    action: "validate_chain"
+    fallback: "use_last_valid_state"
+    notify: true
+  
+  gossip_network_partition:
+    action: "reconnect"
+    timeout_seconds: 30
+    fallback: "isolate_node"
+    notify: true
+
+monitoring:
+  heartbeat_interval_seconds: 5
+  watchdog_timeout_seconds: 15
+  critical_services:
+    - "zk_verifier"
+    - "container_runtime"
+    - "gossip_protocol"

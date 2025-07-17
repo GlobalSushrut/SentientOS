@@ -1,0 +1,14 @@
+name: "system_trace_contract"
+version: "1.0"
+permissions:
+  - filesystem.read
+  - network.localhost
+verification:
+  input:
+    - name: "trace_hash"
+      type: "string"
+  output:
+    - name: "verified"
+      type: "boolean"
+  constraints:
+    - "verified == true"

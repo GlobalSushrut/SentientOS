@@ -1,0 +1,24 @@
+name: simple-app
+version: 0.1.0
+description: Simple application running in SentientOS burn environment
+
+runtime:
+  wasm: true
+  permissions:
+    filesystem: read
+    network: none
+    memory: limited
+    compute: standard
+  
+resources:
+  memory_limit_mb: 32
+  cpu_limit_percent: 10
+  
+entry:
+  module: app.wasm
+  function: main
+
+verification:
+  zero_knowledge: true
+  memory_safety: true
+  resource_containment: true

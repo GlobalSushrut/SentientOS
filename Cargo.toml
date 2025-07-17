@@ -1,0 +1,32 @@
+[package]
+name = "sentient_os"
+version = "0.1.0"
+edition = "2021"
+description = "A next-generation, ultra-lightweight, ZK-proofed, dynamic OS"
+authors = ["Umesh Adhikari"]
+repository = "https://github.com/umeshadhikari/sentientos"
+license = "MIT"
+
+[dependencies]
+clap = { version = "4.4", features = ["derive"] } # Command line argument parsing
+tracing = "0.1"           # Logging and tracing
+tracing-subscriber = "0.3" # Tracing implementation
+serde = { version = "1.0", features = ["derive"] } # Serialization/deserialization
+serde_yaml = "0.9"        # YAML support for ZK-YAML contracts
+thiserror = "1.0"         # Error handling
+tokio = { version = "1.36", features = ["full"] } # Async runtime
+anyhow = "1.0"            # Error handling
+wasmer = "4.2"            # WebAssembly runtime
+wasmer-wasi = "4.2"       # WASI support for Wasmer
+merkle_tree = "0.1"       # For cryptographic tree operations
+blake3 = "1.5"            # Fast cryptographic hashing
+rkyv = "0.7"              # Zero-copy deserialization
+zk-circuit = { version = "0.1", optional = true } # Optional ZK proof generation
+
+[[bin]]
+name = "sentctl"
+path = "src/bin/sentctl.rs"
+
+[features]
+default = ["zk-support"]
+zk-support = ["zk-circuit"]

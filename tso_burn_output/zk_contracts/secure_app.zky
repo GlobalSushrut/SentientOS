@@ -1,0 +1,42 @@
+name: "secure_data_processor"
+version: "1.0"
+author: "SentientOS Demo"
+description: "Secure data processing with zero-knowledge verification"
+permissions:
+  - filesystem.read.limited
+  - network.localhost
+  - matrix.container.access
+
+verification:
+  input:
+    - name: "data_hash"
+      type: "string"
+    - name: "user_id"
+      type: "u64"
+    - name: "timestamp"
+      type: "u64"
+  output:
+    - name: "processed"
+      type: "boolean"
+    - name: "result_hash"
+      type: "string"
+  constraints:
+    - "processed == true"
+    - "timestamp > 0"
+    - "verify_hash(data_hash, result_hash)"
+
+functions:
+  verify_hash:
+    inputs:
+      - name: "input_hash"
+        type: "string"
+      - name: "output_hash"
+        type: "string"
+    output:
+      type: "boolean"
+    body: |
+      // ZK verification logic
+      // This would contain the actual zero-knowledge proof verification
+      // Using ZK-YAML's simplified syntax instead of Solidity
+      let proof_valid = zk.verify(input_hash, output_hash)
+      return proof_valid

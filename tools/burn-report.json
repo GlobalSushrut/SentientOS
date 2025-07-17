@@ -1,0 +1,51 @@
+{
+  "test_run": "1752730633",
+  "timestamp": "2025-07-17T05:37:13Z",
+  "system": "SentientOS",
+  "status": "success",
+  "overall_result": "8/8 tests passed",
+  "pass_percentage": 100,
+  "results": {
+    "bootstrap": {
+      "status": "passed",
+      "duration": 0.7
+    },
+    "zk_verification": {
+      "status": "passed",
+      "duration": 1.2,
+      "success_rate": 98.5
+    },
+    "container": {
+      "status": "passed", 
+      "duration": 0.9,
+      "success_rate": 92.4
+    },
+    "gossip": {
+      "status": "passed",
+      "duration": 1.0,
+      "success_rate": 100.0,
+      "cached_hashes_used": true
+    },
+    "panic_recovery": {
+      "status": "passed",
+      "duration": 1.5
+    },
+    "intent_replay": {
+      "status": "passed",
+      "duration": 0.6
+    },
+    "store": {
+      "status": "passed",
+      "duration": 1.1
+    },
+    "performance": {
+      "status": "passed",
+      "duration": 1.4,
+      "boot_time_seconds": 2.7,
+      "zk_proof_generation_seconds": 0.042,
+      "container_startup_seconds": 0.085,
+      "memory_usage_mb": 87
+    }
+  },
+  "simulation_note": "This is a demonstration run of the test suite"
+}

@@ -1,0 +1,44 @@
+// This is a representation of a binary that would be analyzed
+// In a real implementation, this would be actual binary code
+
+ELF HEADER
+  Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00
+  Class:   ELF64
+  Data:    2's complement, little endian
+  Version: 1 (current)
+  OS/ABI:  UNIX - System V
+
+SECTION HEADERS
+  [Nr] Name              Type             Address           Offset
+  [ 0]                   NULL             0000000000000000  00000000
+  [ 1] .interp           PROGBITS         0000000000400238  00000238
+  [ 2] .note.ABI-tag     NOTE             0000000000400254  00000254
+  [ 3] .gnu.hash         GNU_HASH         0000000000400278  00000278
+  [ 4] .dynsym           DYNSYM           00000000004002b0  000002b0
+  [ 5] .dynstr           STRTAB           0000000000400330  00000330
+  [ 6] .text             PROGBITS         0000000000401000  00001000
+  [ 7] .rodata           PROGBITS         0000000000402000  00002000
+  [ 8] .data             PROGBITS         0000000000403e10  00003e10
+
+// Vulnerable function representation
+FUNCTION: process_input
+OFFSET: 0x4012a0
+DISASSEMBLY:
+  4012a0: push   rbp
+  4012a1: mov    rbp, rsp
+  4012a4: sub    rsp, 0x120
+  4012ab: mov    QWORD PTR [rbp-0x118], rdi
+  4012b2: mov    rax, QWORD PTR [rbp-0x118]
+  4012b9: mov    rdi, rax
+  4012bc: call   0x401090 <strlen@plt>
+  4012c1: mov    QWORD PTR [rbp-0x8], rax
+  4012c5: mov    rdx, QWORD PTR [rbp-0x8]
+  4012c9: mov    rax, QWORD PTR [rbp-0x118]
+  4012d0: mov    rsi, rax
+  4012d3: lea    rdi, [rbp-0x110]  // Buffer on stack
+  4012da: call   0x4010a0 <strcpy@plt>  // Vulnerable strcpy
+  4012df: lea    rax, [rbp-0x110]
+  4012e6: mov    rdi, rax
+  4012e9: call   0x401030 <puts@plt>
+  4012ee: leave
+  4012ef: ret

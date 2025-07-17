@@ -1,0 +1,31 @@
+name: cloud-cluster
+version: 1.0.0
+runtime: wasm
+entry: api_service.wasm
+zk_contract: cloud_hypervisor_contract
+permissions:
+  - network.unrestricted
+  - system.resource.manage
+  - container.lifecycle
+  - memory.optimize
+environment:
+  HYPEROPTIMIZED: "true"
+  ZK_VERIFICATION: "continuous"
+  MATRIXBOX_MODE: "cloud"
+  SHARED_MEMORY: "enabled"
+  BINARY_COMPRESSION: "maximum"
+resource_limits:
+  memory_mb: "dynamic"
+  cpu_units: "dynamic"
+  max_connections: 10000
+cluster_config:
+  auto_scaling: true
+  mesh_topology: true
+  replication_factor: 3
+  sharding: "auto"
+performance_optimizations:
+  zero_copy: true
+  memory_pooling: true
+  request_batching: true
+  parallel_execution: true
+  predictive_scaling: true

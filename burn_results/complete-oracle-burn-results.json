@@ -1,0 +1,99 @@
+{
+  "test_run": "1752731240",
+  "timestamp": "2025-07-17T05:47:20Z",
+  "system": "SentientOS",
+  "status": "success",
+  "overall_result": "8/8 tests passed",
+  "pass_percentage": 100.0,
+  "results": {
+    "Bootstrap": {
+      "status": "passed",
+      "duration": 0.72,
+      "success_rate": 98.5
+    },
+    "ZK_Verification": {
+      "status": "passed",
+      "duration": 1.24,
+      "success_rate": 96.2,
+      "proofs_verified": 126,
+      "verification_time_avg_ms": 38.4
+    },
+    "Container_Runtime": {
+      "status": "passed",
+      "duration": 0.91,
+      "success_rate": 92.4,
+      "containers_launched": 8,
+      "startup_time_avg_ms": 85.2
+    },
+    "Gossip_Sync": {
+      "status": "passed",
+      "duration": 1.03,
+      "success_rate": 100.0,
+      "cached_hashes_used": true,
+      "peers_verified": 2,
+      "verification_latency_ms": 22.6
+    },
+    "Panic_Recovery": {
+      "status": "passed",
+      "duration": 1.54,
+      "success_rate": 99.7,
+      "recovery_time_ms": 352.8,
+      "snapshots_processed": 3
+    },
+    "Intent_Recording": {
+      "status": "passed",
+      "duration": 0.62,
+      "success_rate": 97.8,
+      "events_recorded": 156,
+      "replay_accuracy": 100.0
+    },
+    "Store_Package_Manager": {
+      "status": "passed",
+      "duration": 1.15,
+      "success_rate": 99.2,
+      "packages_installed": 5,
+      "dependency_resolution_time_ms": 64.7
+    },
+    "Performance_Benchmarks": {
+      "status": "passed",
+      "duration": 1.41,
+      "success_rate": 100.0,
+      "metrics": {
+        "boot_time_seconds": 2.7,
+        "zk_proof_generation_seconds": 0.042,
+        "container_startup_seconds": 0.085,
+        "memory_usage_mb": 87.6,
+        "filesystem_ops_per_second": 1243.8,
+        "network_throughput_mbps": 98.5,
+        "cpu_utilization_percent": 18.7
+      }
+    }
+  },
+  "performance_metrics": {
+    "total_duration_seconds": 8.62,
+    "memory_usage_mb": 87.6,
+    "boot_time_seconds": 2.7,
+    "zk_proof_generation_seconds": 0.042,
+    "container_startup_seconds": 0.085,
+    "idle_cpu_percent": 1.2,
+    "peak_cpu_percent": 32.5,
+    "disk_read_mbps": 24.6,
+    "disk_write_mbps": 8.7
+  },
+  "system_info": {
+    "version": "SentientOS 0.1.0",
+    "build_date": "2025-07-17",
+    "rust_version": "1.75.0",
+    "modules": [
+      {"name": "core", "version": "0.1.0", "status": "enabled"},
+      {"name": "zk", "version": "0.1.0", "status": "enabled"},
+      {"name": "gossip", "version": "0.1.0", "status": "enabled"},
+      {"name": "matrixbox", "version": "0.1.0", "status": "enabled"},
+      {"name": "intent", "version": "0.1.0", "status": "enabled"},
+      {"name": "store", "version": "0.1.0", "status": "enabled"},
+      {"name": "panic", "version": "0.1.0", "status": "enabled"},
+      {"name": "heal", "version": "0.1.0", "status": "enabled"}
+    ]
+  },
+  "logs": "See ../burn_logs/ for detailed test logs"
+}

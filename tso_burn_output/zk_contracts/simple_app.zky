@@ -1,0 +1,58 @@
+// SentientOS Simple Application Contract
+// Defines a simple calculator application with zero-knowledge verification
+
+type: application
+name: simple_calculator
+version: 1.0.0
+
+// Application binary reference
+binary:
+  wasm_path: /app/calculator.wasm
+  entry_point: main
+  hash: 0xf721a9b352c3b1819c4c352
+
+// Resource constraints
+resources:
+  memory_mb: 16
+  cpu_percent: 5
+  storage_mb: 1
+  network: false
+
+// Input/output specifications
+io:
+  input:
+    - name: number_a
+      type: integer
+      range: [0, 1000]
+    - name: number_b
+      type: integer
+      range: [0, 1000]
+    - name: operation
+      type: string
+      allowed: ["add", "subtract", "multiply", "divide"]
+  
+  output:
+    - name: result
+      type: integer
+      verify: true
+
+// Zero-knowledge verification requirements
+verification:
+  properties:
+    - correct_calculation:
+        description: "Verify that calculation results are mathematically correct"
+        expression: "output.result == verify_calculation(input.number_a, input.number_b, input.operation)"
+    
+    - input_ranges:
+        description: "Verify inputs are within valid ranges"
+        expression: "input.number_a >= 0 && input.number_a <= 1000 && input.number_b >= 0 && input.number_b <= 1000"
+    
+    - division_safety:
+        description: "Verify no division by zero occurs"
+        expression: "input.operation != 'divide' || input.number_b != 0"
+
+// Security guarantees
+security:
+  memory_safety: true
+  isolation: container
+  side_channel_protection: true

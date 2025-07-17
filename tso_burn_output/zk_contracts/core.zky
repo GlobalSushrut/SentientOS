@@ -1,0 +1,19 @@
+name: "core_boot_contract"
+version: "1.0"
+author: "SentientOS TSO Burn"
+permissions:
+  - filesystem.read
+  - filesystem.write
+  - network.localhost
+verification:
+  input:
+    - name: "boot_hash"
+      type: "string"
+    - name: "timestamp"
+      type: "u64"
+  output:
+    - name: "verified"
+      type: "boolean"
+  constraints:
+    - "verified == true"
+    - "timestamp > 0"

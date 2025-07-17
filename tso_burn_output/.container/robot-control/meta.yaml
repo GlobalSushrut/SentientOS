@@ -1,0 +1,18 @@
+name: robot-control
+version: 1.0.0
+runtime: wasm
+entry: robot.wasm
+zk_contract: robot_safety_contract
+permissions:
+  - robot.movement
+  - robot.sensors
+  - network.localhost
+  - filesystem.read.limited
+environment:
+  ROBOT_SAFETY_MODE: "strict"
+  ZK_VERIFICATION: "real-time"
+  MATRIXBOX_ISOLATION: "hardware"
+hardware_access:
+  - sensors
+  - actuators
+  - lidar

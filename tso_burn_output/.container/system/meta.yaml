@@ -1,0 +1,8 @@
+name: system
+version: 1.0.0
+runtime: wasm
+entry: main.wasm
+permissions:
+  - filesystem.read
+  - filesystem.write
+  - network.localhost

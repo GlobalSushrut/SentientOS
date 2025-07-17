@@ -1,0 +1,12 @@
+name: secure-app
+version: 1.0.0
+runtime: wasm
+entry: app.wasm
+zk_contract: secure_data_processor
+permissions:
+  - filesystem.read.limited
+  - network.localhost
+environment:
+  SECURE_MODE: "1"
+  ZK_VERIFICATION: "enabled"
+  MATRIXBOX_ISOLATION: "strict"

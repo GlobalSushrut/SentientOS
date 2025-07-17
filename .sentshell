@@ -1,0 +1,88 @@
+#!/bin/bash
+# SentientOS Shell
+
+SENTCTL="./target/release/sentctl"
+
+handle_command() {
+  cmd="$1"
+  shift
+  
+  case "$cmd" in
+    ls|cat|pwd|cd|mkdir|echo|grep)
+      # Pass through basic commands to the underlying shell
+      "$cmd" "$@"
+      ;;
+    matrixbox)
+      $SENTCTL matrixbox "$@"
+      ;;
+    zk)
+      $SENTCTL zk "$@"
+      ;;
+    container)
+      $SENTCTL container "$@"
+      ;;
+    store)
+      $SENTCTL store "$@"
+      ;;
+    contract)
+      $SENTCTL contract "$@"
+      ;;
+    run)
+      $SENTCTL run "$@"
+      ;;
+    status)
+      echo "SentientOS Status:"
+      echo "  Runtime: Active"
+      echo "  ZK Service: Running"
+      echo "  MatrixBox Containers: $(ls -1 .container 2>/dev/null | wc -l)"
+      echo "  Memory Usage: $(free -m | awk '/^Mem:/{print $3}') MB"
+      ;;
+    help)
+      echo "SentientOS Commands:"
+      echo "  matrixbox [ls|run|stop] - Manage containers"
+      echo "  zk [verify|generate] - ZK operations" 
+      echo "  container [create|list] - Container operations"
+      echo "  store [install|list] - Package management"
+      echo "  contract [load|verify] - Contract operations"
+      echo "  run <app> - Run application"
+      echo "  exit - Exit SentientOS"
+      ;;
+    exit)
+      echo "Shutting down SentientOS..."
+      $SENTCTL shutdown --clean
+      exit 0
+      ;;
+    *)
+      # Try sentctl command
+      if $SENTCTL "$cmd" "$@"; then
+        return 0
+      else
+        # If not a sentctl command, try as regular command
+        if command -v "$cmd" &>/dev/null; then
+          "$cmd" "$@"
+        else
+          echo "Unknown command: $cmd"
+          echo "Type 'help' for available commands"
+          return 1
+        fi
+      fi
+      ;;
+  esac
+}
+
+echo -e "${GREEN}SentientOS Terminal${NC}"
+echo -e "${BLUE}Type 'help' for available commands${NC}"
+echo -e "${BLUE}Type 'exit' to shutdown SentientOS${NC}\n"
+
+while true; do
+  read -e -p "[sentient]$ " cmd_line
+  
+  # Skip empty commands
+  if [ -z "$cmd_line" ]; then
+    continue
+  fi
+  
+  # Parse command line
+  read -ra cmd_array <<< "$cmd_line"
+  handle_command "${cmd_array[@]}"
+done
