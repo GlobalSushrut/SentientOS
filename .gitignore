@@ -1,0 +1,45 @@
+# Generated files
+/target/
+**/*.rs.bk
+Wasm-*
+*.wasm
+
+# Rust build artifacts
+Cargo.lock
+
+# TinyGo build artifacts
+go.sum
+
+# WebAssembly binaries (but keep .wat source files)
+*.wasm
+!*.wat
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+*.tmp
+tmp/
+
+# Debug files
+*.pdb
+*.dSYM/
+
+# Documentation build outputs
+/doc/
+
+# Container runtime files
+.container/**/runtime/
+
+# Private keys and sensitive data
+*.pem
+*.key
+*.crt
+
