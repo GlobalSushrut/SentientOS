@@ -205,6 +205,28 @@ verification:
 - **ML-based predictive scaling** for optimal resource utilization
 - **Mathematically verified** distributed computing capabilities
 
+## Interactive Demos
+
+Explore SentientOS key features through interactive terminal demos:
+
+### Zero-Knowledge Verification Demo
+
+<div align="center">
+  <img src="demo_recordings/gifs/zk_verification_demo.svg" alt="Zero-Knowledge Verification Demo" width="700" />
+</div>
+
+### MatrixBox Container Architecture Demo
+
+<div align="center">
+  <img src="demo_recordings/gifs/matrix_container_demo.svg" alt="MatrixBox Container Demo" width="700" />
+</div>
+
+### Universal Package Manager Demo
+
+<div align="center">
+  <img src="demo_recordings/gifs/package_manager_demo.svg" alt="Universal Package Manager Demo" width="700" />
+</div>
+
 <details>
 <summary><strong>MatrixBox Container Architecture</strong> (click to expand)</summary>
 

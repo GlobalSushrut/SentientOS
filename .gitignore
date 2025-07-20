@@ -2,7 +2,6 @@
 /target/
 **/*.rs.bk
 Wasm-*
-*.wasm
 
 # Rust build artifacts
 Cargo.lock
@@ -10,9 +9,11 @@ Cargo.lock
 # TinyGo build artifacts
 go.sum
 
-# WebAssembly binaries (but keep .wat source files)
-*.wasm
-!*.wat
+# WebAssembly files - INCLUDE these crucial files
+!**/tso_burn_output/**/*.wasm
+!**/examples/**/*.wasm
+!target/release/sentctl
+!target/release/sentientos
 
 # IDE files
 .vscode/

@@ -15,6 +15,8 @@ pub mod intent;
 pub mod filesystem;
 pub mod cli;
 pub mod network;
+pub mod store;
+pub mod package;
 
 /// Version of Sentinent OS
 pub const VERSION: &str = "0.1.0";
@@ -70,6 +72,12 @@ pub fn init(zk_enabled: bool) -> anyhow::Result<()> {
     // Initialize developer intent system
     intent::init()?;
     
+    // Initialize store subsystem
+    store::init()?;
+    
+    // Initialize package manager
+    package::init()?;
+    
     // Initialize CLI interface
     cli::init()?;
     
@@ -91,6 +99,8 @@ pub fn shutdown() -> anyhow::Result<()> {
     
     // Shutdown components in reverse order of initialization
     cli::shutdown()?;
+    package::shutdown()?;
+    store::shutdown()?;
     intent::shutdown()?;
     zk::shutdown()?;
     gossip::shutdown()?;

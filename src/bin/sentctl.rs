@@ -79,6 +79,10 @@ enum Commands {
     #[command(subcommand)]
     Intent(IntentCommands),
     
+    /// Universal package manager
+    #[command(subcommand)]
+    Package(PackageCommands),
+    
     /// Replay recorded development session
     Replay {
         /// Session ID to replay
@@ -223,10 +227,116 @@ enum IntentCommands {
     Stop {},
 }
 
+#[derive(Subcommand)]
+enum PackageCommands {
+    /// Install a package
+    Install {
+        /// Package name to install
+        #[arg(required = true)]
+        name: String,
+        
+        /// Package version (optional)
+        #[arg(short, long)]
+        version: Option<String>,
+        
+        /// Package ecosystem (native, linux, npm, python, java, rust, go)
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+    
+    /// Remove an installed package
+    Remove {
+        /// Package name to remove
+        #[arg(required = true)]
+        name: String,
+        
+        /// Package ecosystem (native, linux, npm, python, java, rust, go)
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+    
+    /// List installed packages
+    List {
+        /// Filter packages by ecosystem
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+    
+    /// Search for packages
+    Search {
+        /// Search query
+        #[arg(required = true)]
+        query: String,
+        
+        /// Package ecosystem to search in
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+    
+    /// Run a package with arguments
+    Run {
+        /// Package name to run
+        #[arg(required = true)]
+        name: String,
+        
+        /// Arguments to pass to the package
+        #[arg(last = true)]
+        args: Vec<String>,
+        
+        /// Package ecosystem
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+    
+    /// Create an application from packages
+    CreateApp {
+        /// Application name
+        #[arg(required = true)]
+        name: String,
+        
+        /// Packages to include
+        #[arg(short, long, required = true)]
+        packages: Vec<String>,
+        
+        /// Icon path
+        #[arg(short, long)]
+        icon: Option<String>,
+        
+        /// Create desktop entry
+        #[arg(short, long)]
+        desktop: bool,
+    },
+    
+    /// Update installed packages
+    Update {
+        /// Package name to update (if not specified, updates all)
+        #[arg(short, long)]
+        name: Option<String>,
+        
+        /// Package ecosystem
+        #[arg(short, long)]
+        ecosystem: Option<String>,
+    },
+}
+
 fn main() {
     // Initialize tracing for logging
     tracing_subscriber::fmt::init();
     
+    /// Parse ecosystem string to Ecosystem enum
+    fn parse_ecosystem(ecosystem: Option<&str>) -> Option<crate::package::Ecosystem> {
+        ecosystem.map(|eco| match eco.to_lowercase().as_str() {
+            "native" => crate::package::Ecosystem::Native,
+            "linux" => crate::package::Ecosystem::Linux,
+            "npm" => crate::package::Ecosystem::Npm,
+            "python" => crate::package::Ecosystem::Python,
+            "java" => crate::package::Ecosystem::Java,
+            "rust" => crate::package::Ecosystem::Rust,
+            "go" => crate::package::Ecosystem::Go,
+            other => crate::package::Ecosystem::Other(other.to_string()),
+        })
+    }
+
     let cli = Cli::parse();
 
     // Match on the subcommand
@@ -374,6 +484,99 @@ fn main() {
                 IntentCommands::Stop {} => {
                     println!("Stopping developer intent recording session");
                     // TODO: Implement intent recording stop logic
+                }
+            }
+        }
+        
+        Commands::Package(cmd) => {
+            match cmd {
+                PackageCommands::Install { name, version, ecosystem } => {
+                    println!("Installing package: {}", name);
+                    let eco = parse_ecosystem(ecosystem.as_deref());
+                    let ver_ref = version.as_deref();
+                    
+                    match crate::package::install_package(&name, eco, ver_ref) {
+                        Ok(_) => println!("Package {} installed successfully", name),
+                        Err(e) => eprintln!("Failed to install package: {}", e),
+                    }
+                }
+                PackageCommands::Remove { name, ecosystem } => {
+                    println!("Removing package: {}", name);
+                    let eco = parse_ecosystem(ecosystem.as_deref());
+                    
+                    match crate::package::remove_package(&name, eco) {
+                        Ok(_) => println!("Package {} removed successfully", name),
+                        Err(e) => eprintln!("Failed to remove package: {}", e),
+                    }
+                }
+                PackageCommands::List { ecosystem } => {
+                    let eco = parse_ecosystem(ecosystem.as_deref());
+                    
+                    match crate::package::list_packages(eco) {
+                        Ok(packages) => {
+                            println!("Installed packages:");
+                            if packages.is_empty() {
+                                println!("  No packages installed");
+                            } else {
+                                for pkg in packages {
+                                    println!("  {} ({}): {}", pkg.name, format!("{:?}", pkg.ecosystem).to_lowercase(), pkg.version);
+                                }
+                            }
+                        }
+                        Err(e) => eprintln!("Failed to list packages: {}", e),
+                    }
+                }
+                PackageCommands::Search { query, ecosystem } => {
+                    println!("Searching for packages matching: {}", query);
+                    let eco = parse_ecosystem(ecosystem.as_deref());
+                    
+                    match crate::package::search_packages(&query, eco) {
+                        Ok(results) => {
+                            println!("Search results:");
+                            if results.is_empty() {
+                                println!("  No packages found matching query");
+                            } else {
+                                for result in results {
+                                    println!("  {}", result);
+                                }
+                            }
+                        }
+                        Err(e) => eprintln!("Search failed: {}", e),
+                    }
+                }
+                PackageCommands::Run { name, args, ecosystem } => {
+                    println!("Running package: {}", name);
+                    let eco = parse_ecosystem(ecosystem.as_deref());
+                    let arg_refs: Vec<&str> = args.iter().map(AsRef::as_ref).collect();
+                    
+                    match crate::package::run_package(&name, eco, &arg_refs) {
+                        Ok(_) => println!("Package {} execution completed", name),
+                        Err(e) => eprintln!("Failed to run package: {}", e),
+                    }
+                }
+                PackageCommands::CreateApp { name, packages, icon, desktop } => {
+                    println!("Creating application: {}", name);
+                    let pkg_refs: Vec<&str> = packages.iter().map(AsRef::as_ref).collect();
+                    
+                    match crate::package::create_app(&name, &pkg_refs, icon.as_deref(), desktop) {
+                        Ok(_) => println!("Application {} created successfully", name),
+                        Err(e) => eprintln!("Failed to create application: {}", e),
+                    }
+                }
+                PackageCommands::Update { name, ecosystem } => {
+                    if let Some(pkg_name) = name {
+                        println!("Updating package: {}", pkg_name);
+                        let eco = parse_ecosystem(ecosystem.as_deref());
+                        
+                        match crate::package::update_package(&pkg_name, eco) {
+                            Ok(_) => println!("Package {} updated successfully", pkg_name),
+                            Err(e) => eprintln!("Failed to update package: {}", e),
+                        }
+                    } else {
+                        println!("Updating all packages");
+                        // TODO: Implement update all packages
+                        eprintln!("Update all packages not implemented yet");
+                    }
                 }
             }
         }

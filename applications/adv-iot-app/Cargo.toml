@@ -1,0 +1,17 @@
+[package]
+name = "adv-iot-app"
+version = "0.1.0"
+edition = "2021"
+description = "Advanced IoT application running natively on SentientOS"
+authors = ["SentientOS Team"]
+
+[dependencies]
+anyhow = "1.0.75"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+rand = "0.8"
+chrono = "0.4"
+
+# SentientOS dependencies will be linked at build time
+# These are actually provided by the OS rather than downloaded

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentientOS IoT Demo Recording</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.3.0/dist/bundle/asciinema-player.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #0d1117;
+            color: #e6edf3;
+        }
+        .container {
+            background-color: #161b22;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+            border: 1px solid #30363d;
+        }
+        h1 {
+            color: #58a6ff;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .player-container {
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .features {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #1c2128;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+        }
+        .features h3 {
+            margin-top: 0;
+            color: #58a6ff;
+            font-size: 20px;
+        }
+        .features ul {
+            padding-left: 20px;
+        }
+        .features li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 5px;
+            background-color: #238636;
+            color: white;
+        }
+        .note {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(56, 139, 253, 0.1);
+            border-left: 4px solid #58a6ff;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SentientOS IoT Application Demo</h1>
+        
+        <div class="player-container">
+            <!-- Professional, enterprise-grade player configuration -->
+            <asciinema-player 
+                src="sentientos_demo_20250720_011725.cast" 
+                cols="100" 
+                rows="30" 
+                preload 
+                autoplay 
+                font-size="medium"
+                theme="monokai"
+                speed="1.2"
+                idle-time-limit="1"
+                start-at="0"
+                poster="npt:0:30"></asciinema-player>
+        </div>
+        
+        <div class="features">
+            <h3>SentientOS Key Features Demonstrated:</h3>
+            <ul>
+                <li><span class="badge">Security</span> <strong>MatrixBox Containers:</strong> Enterprise-grade isolation for applications with vulnerability scanning</li>
+                <li><span class="badge">Privacy</span> <strong>Zero-Knowledge Verification:</strong> Advanced cryptographic proof system for data integrity and privacy</li>
+                <li><span class="badge">DevOps</span> <strong>Universal Package Manager:</strong> Seamless support for multiple ecosystems (npm, Python, Java, Rust, Go)</li>
+                <li><span class="badge">Network</span> <strong>Gossip Protocol:</strong> High-performance distributed data synchronization with consistency guarantees</li>
+                <li><span class="badge">Audit</span> <strong>Developer Intent Recording:</strong> GDPR-compliant audit trail for all system actions</li>
+            </ul>
+            
+            <h3>IoT Application Features:</h3>
+            <ul>
+                <li><strong>Real-time Monitoring:</strong> Millisecond-level sensor data collection and processing</li>
+                <li><strong>Dynamic Visualization:</strong> Interactive device management with responsive UI</li>
+                <li><strong>Secure Commands:</strong> Cryptographically verified command execution</li>
+                <li><strong>Distributed Architecture:</strong> Edge-to-cloud data synchronization via SentientOS gossip protocol</li>
+            </ul>
+            
+            <div class="note">
+                This demonstration shows SentientOS running a real IoT application in a secure MatrixBox container, 
+                verifying the application with zero-knowledge proofs, and managing dependencies through the universal package manager.
+                The entire process is enterprise-grade and production-ready.
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.3.0/dist/bundle/asciinema-player.js"></script>
+</body>
+</html>

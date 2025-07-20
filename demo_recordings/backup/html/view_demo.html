@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentientOS IoT Demo Recording</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.0.1/dist/bundle/asciinema-player.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .player-container {
+            margin: 20px 0;
+        }
+        .features {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+        .features h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .features ul {
+            padding-left: 20px;
+        }
+        .features li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>SentientOS IoT Demo Recording</h1>
+        
+        <div class="player-container">
+            <asciinema-player src="sentientos_demo_20250720_011725.cast" 
+                              cols="100" 
+                              rows="30" 
+                              preload 
+                              autoplay 
+                              loop 
+                              speed="1.5"
+                              font-size="12px"></asciinema-player>
+        </div>
+        
+        <div class="features">
+            <h3>SentientOS Key Features Demonstrated:</h3>
+            <ul>
+                <li><strong>MatrixBox Containers</strong>: Secure isolation for applications</li>
+                <li><strong>Zero-Knowledge Verification</strong>: Cryptographic proof system for data integrity</li>
+                <li><strong>Universal Package Manager</strong>: Support for multiple ecosystems (npm, Python, Java, Rust, Go)</li>
+                <li><strong>Gossip Protocol</strong>: Efficient distributed data synchronization</li>
+                <li><strong>Developer Intent Recording</strong>: Built-in audit trail for all system actions</li>
+            </ul>
+            
+            <h3>IoT Application Features:</h3>
+            <ul>
+                <li>Real-time sensor data collection and processing</li>
+                <li>Dynamic device management and visualization</li>
+                <li>Secure command execution with zero-knowledge verification</li>
+                <li>Distributed data synchronization via SentientOS gossip protocol</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.0.1/dist/bundle/asciinema-player.js"></script>
+</body>
+</html>

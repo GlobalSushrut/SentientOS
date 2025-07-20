@@ -1,0 +1,10 @@
+name: iot-dapp
+version: 1.0.0
+permissions:
+  - network.listen: 3000
+  - fs.read: /home/umesh/Sentinent_os/tso_burn_output/projects/iot-dapp
+  - gossip.broadcast
+  - zk.verify
+execution:
+  type: nodejs
+  entry: server.js

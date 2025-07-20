@@ -1,0 +1,119 @@
+# Terminalizer configuration file
+
+# Specify a command to be executed
+# like `/bin/bash -l`, `ls`, or any other commands
+# the default is bash for Linux
+# or powershell.exe for Windows
+command: cat ./sentientos_demo_20250720_011725.cast
+
+# Specify the current working directory path
+# the default is the current working directory path
+cwd: /home/umesh/Sentinent_os/demo_recordings
+
+# Export additional ENV variables
+env:
+  recording: true
+
+# Explicitly set the number of columns
+# or use `auto` to take the current
+# number of columns of your shell
+cols: 100
+
+# Explicitly set the number of rows
+# or use `auto` to take the current
+# number of rows of your shell
+rows: 30
+
+# Amount of times to repeat GIF
+# If value is -1, play once
+# If value is 0, loop indefinitely
+# If value is a positive number, loop n times
+repeat: 0
+
+# Quality
+# 1 - 100
+quality: 100
+
+# Delay between frames in ms
+# If the value is `auto` the delay is computed based on the actual recorded delays
+frameDelay: auto
+
+# Maximum delay between frames in ms
+# Ignored if the `frameDelay` isn't set to `auto`
+# Set to `auto` to prevent limiting the max idle time
+maxIdleTime: 2000
+
+# The surrounding frame box
+# The `type` can be null, window, floating, or solid`
+# To hide the title use the value null
+# Don't forget to add spaces to the title
+frameBox:
+  type: solid
+  title: SentientOS IoT Application Demo
+  style:
+    border: 0px black solid
+    # boxShadow: none
+    # margin: 0px
+
+# Add a watermark image to the rendered gif
+# You need to specify an absolute path for
+# the image on your machine or a URL, and you can also
+# add your own CSS styles
+watermark:
+  imagePath: null
+  style:
+    position: absolute
+    right: 15px
+    bottom: 15px
+    width: 100px
+    opacity: 0.9
+
+# Cursor style can be one of
+# `block`, `underline`, or `bar`
+cursorStyle: block
+
+# Font family
+# You can use any font that is installed on your machine
+# in CSS-like syntax
+fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+
+# The size of the font
+fontSize: 14
+
+# The height of lines
+lineHeight: 1.2
+
+# The spacing between letters
+letterSpacing: 0
+
+# Theme
+theme:
+  background: "#1e1e2e"
+  foreground: "#d9e0ee"
+  cursor: "#f5e0dc"
+  black: "#1e1e2e"
+  red: "#f38ba8"
+  green: "#a6e3a1"
+  yellow: "#f9e2af"
+  blue: "#89b4fa"
+  magenta: "#cba6f7"
+  cyan: "#89dceb"
+  white: "#d9e0ee"
+  brightBlack: "#585b70"
+  brightRed: "#f38ba8"
+  brightGreen: "#a6e3a1"
+  brightYellow: "#f9e2af"
+  brightBlue: "#89b4fa"
+  brightMagenta: "#cba6f7"
+  brightCyan: "#89dceb"
+  brightWhite: "#d9e0ee"
+
+# Shell to execute (Windows only)
+#shell: bash
+
+# Record mode
+# Can be one of `record` or `play`
+mode: record
+
+# Whether to render a progress bar in the terminal
+progress: true

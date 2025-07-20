@@ -1,0 +1,30 @@
+name: iot-dapp
+version: 1.0.0
+description: Advanced IoT Dashboard Application for SentientOS
+author: SentientOS Team
+license: MIT
+
+permissions:
+  - network.listen: 3000
+  - fs.read: /home/umesh/Sentinent_os/tso_burn_output/projects/iot-dapp
+  - gossip.broadcast
+  - zk.verify
+  - store.access: iot_data
+  - intent.record
+
+execution:
+  type: nodejs
+  entry: /home/umesh/Sentinent_os/tso_burn_output/projects/iot-dapp/server.js
+  arguments: []
+
+dependencies:
+  npm:
+    - express@4.18.2
+    - socket.io@4.7.2
+    - chart.js@4.4.0
+    - uuid@9.0.1
+
+matrixbox:
+  isolation_level: high
+  memory_limit: 512MB
+  network: restricted
